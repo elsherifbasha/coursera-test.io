@@ -20,33 +20,18 @@
 
                         count++;
                 }
-                if (count > 0) {
-                    if (count <= 3) {
-                        $scope.msg = 'Enjoy!';
-                    } else if (count > 3) {
-                        $scope.msg = 'Too much!'
-                    }
-                    $scope.fontStyle = {
-                        "color": "Dark Green"
-                    };
-                    $scope.boxStyle = {
-                        "border-color": "Dark Green"
-                    };
-                } else {
-                    enterItems();
-                }
-            } else {
-                enterItems();
-            }
+              if (count == 0 ) {
+            $scope.msg = "You did not enter any dishes";
+        } else if (count > 3) {
+            $scope.msg = " Too much!";
+        } else {
+            $scope.msg = " Enjoy";
         }
-        var enterItems = function() {
-            $scope.msg = 'You did not enter any dishes';
-            $scope.fontStyle = {
-                "color": "red"
-            };
-            $scope.boxStyle = {
-                "border-color": "red"
-            };
+        return    $scope.msg ;
+
+
+
+        }
         };
     }
 })();
