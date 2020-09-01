@@ -1,32 +1,38 @@
-<!doctype html>
-<html  ng-app="LunchCheck">
-  <head>
-    <title>Lunch Checker</title>
+(function() {
+    'use strict';
+
+    angular.module('LunchCheck', []).controller('LunchCheckController', LunchCheckController);
+
+    LunchCheckController.$inject = ['$scope'];
+
+    function LunchCheckController($scope) {
+        $scope.list = '';
+        $scope.msg = '';
+
+        $scope.checkItems = function() {
+            console.log('check Items');
+            console.log($scope.list);
+            if ($scope.list !== '') {
+                var arr = $scope.list.split(',');
+                var count = 0;
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i] !== '')
+
+                        count++;
+                }
+                 $scope.msg = "You did not enter any dishes";
+              if (count == 0 ) {
+            $scope.msg = "You did not enter any dishes";
+        } else if (count > 3) {
+            $scope.msg = " Too much!";
+        } else {
+            $scope.msg = " Enjoy";
+        }
+        return    $scope.msg ;
 
 
-  </head>
-<body>
-   <div class="container" ng-controller="LunchCheckController">
-     <h1>Lunch Checker</h1>
 
-         <div class="form-group">
-             <input id="lunch-menu" type="text"
-             placeholder="Please list comma separated dishes for lunch"
-             class="form-control" ng-model="list" ng-style="boxStyle" size="50">
-             <span>Note:NOT consider and empty item, i.e., , , as an item towards to the count. </span>
-         </div>
-         <div ng-style ="fontStyle">
-           {{msg}}
-         </div>
-         <div class="form-group">
-            <button class="btn btn-default" ng-click="checkItems()">Check If Too Much</button>
-
-         </div>
-         <div class="form-group message">
-
-         </div>
-   </div>
-   <script src="angular.min.js"></script>
- <script src='app.js'></script>
-</body>
-</html>
+        }
+        };
+    }
+})();
